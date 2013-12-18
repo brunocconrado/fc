@@ -25,33 +25,17 @@
 		<spring.mobile>1.1.0.RELEASE</spring.mobile>
 		<spring.mongo.version>1.2.0.RELEASE</spring.mongo.version>
 
-		<!-- SPRING VIEW (THYMELEAF) 
-		<thymeleaf.version>2.1.1.RELEASE</thymeleaf.version>
-		<thymeleaf.extras.version>2.1.0.RELEASE</thymeleaf.extras.version>
-		<nekohtml.version>1.9.6.2</nekohtml.version> -->
+		<!-- SPRING VIEW (THYMELEAF) <thymeleaf.version>2.1.1.RELEASE</thymeleaf.version> <thymeleaf.extras.version>2.1.0.RELEASE</thymeleaf.extras.version> <nekohtml.version>1.9.6.2</nekohtml.version> -->
 
-		<!-- WEB 
-		<servlet.api>3.0.1</servlet.api>
-		<jackson.version>2.2.0</jackson.version>
-		<tomcat.version>7.0.42</tomcat.version> -->
+		<!-- WEB <servlet.api>3.0.1</servlet.api> <jackson.version>2.2.0</jackson.version> <tomcat.version>7.0.42</tomcat.version> -->
 
-		<!-- VALIDATION 
-		<validation-api>1.0.0.GA</validation-api>
-		<hibernate.validator>4.2.0.Final</hibernate.validator>
-		<stella.validator>2.0.3</stella.validator>-->
+		<!-- VALIDATION <validation-api>1.0.0.GA</validation-api> <hibernate.validator>4.2.0.Final</hibernate.validator> <stella.validator>2.0.3</stella.validator> -->
 
-		<!-- GSON API
-		<gson.api>2.2.4</gson.api> -->
+		<!-- GSON API <gson.api>2.2.4</gson.api> -->
 
-		<!-- DB
-		<oracle.jdbc>12.1.0.1</oracle.jdbc>
-		<hsqldb>2.3.0</hsqldb>
-		<mongo.db.version>2.11.3</mongo.db.version>  -->
+		<!-- DB <oracle.jdbc>12.1.0.1</oracle.jdbc> <hsqldb>2.3.0</hsqldb> <mongo.db.version>2.11.3</mongo.db.version> -->
 
-		<!-- API 
-		<apache.httpcomponents>4.2.1</apache.httpcomponents>
-		<apache.httpclient>3.1</apache.httpclient>
-		<apache.fileupload>1.2</apache.fileupload>-->
+		<!-- API <apache.httpcomponents>4.2.1</apache.httpcomponents> <apache.httpclient>3.1</apache.httpclient> <apache.fileupload>1.2</apache.fileupload> -->
 
 		<!-- LOG -->
 		<slf4j.api>1.7.5</slf4j.api>
@@ -66,32 +50,8 @@
 
 	<dependencyManagement>
 		<dependencies>
-			
+
 			<!-- SPRING -->
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-core</artifactId>
-				<version>${spring.version}</version>
-				<scope>compile</scope>
-				<exclusions>
-					<exclusion>
-						<artifactId>commons-logging</artifactId>
-						<groupId>commons-logging</groupId>
-					</exclusion>
-				</exclusions>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-context</artifactId>
-				<version>${spring.version}</version>
-				<scope>compile</scope>
-				<exclusions>
-					<exclusion>
-						<artifactId>commons-logging</artifactId>
-						<groupId>commons-logging</groupId>
-					</exclusion>
-				</exclusions>
-			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-beans</artifactId>
@@ -128,81 +88,98 @@
 				<version>${spring.version}</version>
 				<scope>compile</scope>
 			</dependency>
-			
-			<!-- LOGS -->
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>jcl-over-slf4j</artifactId>
-				<version>${slf4j.api}</version>
-				<scope>runtime</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>log4j-over-slf4j</artifactId>
-				<version>${slf4j.api}</version>
-				<scope>runtime</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>jul-to-slf4j</artifactId>
-				<version>${slf4j.api}</version>
-				<scope>runtime</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-				<version>${slf4j.api}</version>
-				<scope>compile</scope>
-			</dependency>
-			<dependency>
-				<groupId>ch.qos.logback</groupId>
-				<artifactId>logback-classic</artifactId>
-				<version>${logback.classic}</version>
-				<scope>compile</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.fusesource.jansi</groupId>
-				<artifactId>jansi</artifactId>
-				<version>${jansi.version}</version>
-				<scope>runtime</scope>
-			</dependency>
-		
-			<!-- TESTS -->
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>${junit.test}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.mockito</groupId>
-				<artifactId>mockito-all</artifactId>
-				<version>${mockito.all}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-test</artifactId>
-				<version>${spring.version}</version>
-				<scope>test</scope>
-			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 
 	<!-- DEPENDENCIAS COMUNS -->
 	<dependencies>
+
+		<!-- SPRING -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- LOGS -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${slf4j.api}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>log4j-over-slf4j</artifactId>
+			<version>${slf4j.api}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jul-to-slf4j</artifactId>
+			<version>${slf4j.api}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.api}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.classic}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.fusesource.jansi</groupId>
+			<artifactId>jansi</artifactId>
+			<version>${jansi.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- TESTS -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
+			<version>${junit.test}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-all</artifactId>
+			<version>${mockito.all}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
+	
 	<build>
 		<finalName>${project.artifactId}</finalName>
 		<pluginManagement>
