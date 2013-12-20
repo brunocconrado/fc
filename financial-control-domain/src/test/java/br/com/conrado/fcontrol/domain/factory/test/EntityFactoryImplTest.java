@@ -13,6 +13,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import br.com.conrado.fcontrol.domain.User;
+import br.com.conrado.fcontrol.domain.UserBase;
 import br.com.conrado.fcontrol.domain.factory.EntityFactory;
 import br.com.conrado.fcontrol.domain.factory.impl.EntityFactoryImpl;
 import br.com.conrado.fcontrol.domain.hibernate.UserHibernate;
@@ -47,5 +48,17 @@ public class EntityFactoryImplTest {
 	assertNotNull(instance);
 	assertEquals(user, instance.getClass());
 	assertNull(instance.getLogin());
+    }
+    
+    @Test(expected=ClassNotFoundException.class)
+    public void getNewInstanceNotFound() throws ClassNotFoundException {
+	
+	EntityFactory factory = new EntityFactoryImpl(user.getPackage());
+	assertNotNull(factory);
+	
+	factory.init();
+	
+	factory.getNewInstance(UserBase.class);
+	
     }
 }

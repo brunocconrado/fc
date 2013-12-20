@@ -51,7 +51,7 @@ public class EntityFactoryImpl implements EntityFactory {
 	    LOG.warn("Class not found for {}", clazz);
 	    throw new ClassNotFoundException();
 	}
-	LOG.debug("Creating new class for {}-{}", clazz.getCanonicalName(), instanceClass.getCanonicalName());
+	LOG.debug("Creating new class for: interface -> {} | implementation -> {}", clazz.getCanonicalName(), instanceClass.getCanonicalName());
 	return (I) ReflectionsUtil.newInstance(instanceClass);
     }
     
