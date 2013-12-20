@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.Scope;
 
 import br.com.conrado.fcontrol.domain.factory.EntityFactory;
+import br.com.conrado.fcontrol.domain.factory.impl.EntityFactoryImpl;
 import br.com.conrado.fcontrol.domain.mongo.UserMongo;
 import br.com.conrado.fcontrol.domain.profile.DomainProfiles;
 
@@ -20,7 +21,7 @@ public class DomainMongoConfig {
     @Bean
     @Scope(BeanDefinition.SCOPE_SINGLETON)
     public EntityFactory entityfactory() {
-	return new EntityFactory(UserMongo.class.getPackage());
+	return new EntityFactoryImpl(UserMongo.class.getPackage());
     }
     
 }

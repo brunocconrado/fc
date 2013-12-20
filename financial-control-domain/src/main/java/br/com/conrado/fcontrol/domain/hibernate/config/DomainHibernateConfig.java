@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.Scope;
 
 import br.com.conrado.fcontrol.domain.factory.EntityFactory;
+import br.com.conrado.fcontrol.domain.factory.impl.EntityFactoryImpl;
 import br.com.conrado.fcontrol.domain.hibernate.UserHibernate;
 import br.com.conrado.fcontrol.domain.profile.DomainProfiles;
 
@@ -17,14 +18,10 @@ import br.com.conrado.fcontrol.domain.profile.DomainProfiles;
 @Profile(DomainProfiles.HIBERNATE)
 public class DomainHibernateConfig {
 
-    public DomainHibernateConfig() {
-	//super(UserHibernate.class.getPackage());
-    }
-    
     @Bean
     @Scope(BeanDefinition.SCOPE_SINGLETON)
     public EntityFactory entityfactory() {
-	return new EntityFactory(UserHibernate.class.getPackage());
+	return new EntityFactoryImpl(UserHibernate.class.getPackage());
     }
 
 }

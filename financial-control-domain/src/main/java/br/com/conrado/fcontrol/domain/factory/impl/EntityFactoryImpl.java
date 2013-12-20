@@ -1,7 +1,8 @@
-package br.com.conrado.fcontrol.domain.factory;
+package br.com.conrado.fcontrol.domain.factory.impl;
 
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -11,23 +12,25 @@ import org.slf4j.LoggerFactory;
 
 import br.com.conrado.fcontrol.commons.util.reflection.ReflectionsUtil;
 import br.com.conrado.fcontrol.domain.User;
+import br.com.conrado.fcontrol.domain.factory.EntityFactory;
 
 //TODO Melhor lugar para colocar esta classe. Onde?
-public class EntityFactory {
+
+public class EntityFactoryImpl implements EntityFactory {
     
-    private static final Logger LOG = LoggerFactory.getLogger(EntityFactory.class);
+    private static final Logger LOG = LoggerFactory.getLogger(EntityFactoryImpl.class);
     
-    private Map<String, Class<?>> domainClasses;
+    private Map<String, Class<?>> domainClasses = new TreeMap<String, Class<?>>();
     
     private Package baseImplementationPackage;
 
-    public EntityFactory(Package baseImplementationPackage) {
+    public EntityFactoryImpl(Package baseImplementationPackage) {
 	this.baseImplementationPackage = baseImplementationPackage;
     }
 
     @PostConstruct
     @SuppressWarnings("rawtypes")
-    private void init() {
+    public void init() {
 
 	Set<Class> classes = ReflectionsUtil.getPackageClasses(baseImplementationPackage);
 	for (Class clazz : classes) {
@@ -40,8 +43,9 @@ public class EntityFactory {
 	}
     }
     
+    @Override
     @SuppressWarnings("unchecked")
-    public <I, T> I getInstance(Class<T> clazz) throws ClassNotFoundException {
+    public <I, T> I getNewInstance(Class<T> clazz) throws ClassNotFoundException {
 	Class<?> instanceClass = domainClasses.get(clazz.getCanonicalName());
 	if(instanceClass == null) {
 	    LOG.warn("Class not found for {}", clazz);
