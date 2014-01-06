@@ -1,5 +1,9 @@
 package br.com.conrado.fcontrol.domain.mongo.config;
 
+import javax.annotation.PostConstruct;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +21,13 @@ import br.com.conrado.fcontrol.domain.profile.DomainProfiles;
 @ComponentScan(basePackages = "br.com.conrado.fcontrol.domain")
 @Profile(DomainProfiles.HIBERNATE)
 public class DomainMongoConfig {
+    
+private static final Logger LOG = LoggerFactory.getLogger(DomainMongoConfig.class);
+    
+    @PostConstruct
+    public void init() {
+	LOG.info("Init {}", this.getClass().getCanonicalName());
+    }
 
     @Bean
     @Scope(BeanDefinition.SCOPE_SINGLETON)

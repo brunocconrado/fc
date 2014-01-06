@@ -34,11 +34,113 @@
 			<artifactId>spring-web</artifactId>
 		</dependency>
 
+
+		<!-- SPRING SECURITY -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jasypt</groupId>
+			<artifactId>jasypt</artifactId>
+		</dependency>
+
+		<!-- WEB -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>
 		<finalName>${project.artifactId}</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.sql</include>
+					<include>logback.xml</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/webapp</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<archive>
+						<!-- suprime dados de teste do pom.xml -->
+						<addMavenDescriptor>false</addMavenDescriptor>
+						<!-- inclui a versao no WAR -->
+						<manifestEntries>
+							<version>${fluxoav.web.version}</version>
+						</manifestEntries>
+					</archive>
+					<webResources>
+						<resource>
+							<directory>${project.parent.basedir}/${project.artifactId}/src/main/webapp</directory>
+							<filtering>true</filtering>
+							<!-- inclui o profile do spring no web.xml -->
+							<includes>
+								<include>**/*.xml</include>
+							</includes>
+						</resource>
+					</webResources>
+					<overlays>
+						<!-- templates em WEB-INF 
+						<overlay>
+							<groupId>${project.groupId}</groupId>
+							<artifactId>fluxo-av-static</artifactId>
+							<targetPath>/WEB-INF/view/html</targetPath>
+							<includes>
+								<include>*.html</include>
+							</includes>
+							<filtered>true</filtered>
+						</overlay>-->
+						<!-- estaticos na raiz do WAR
+						<overlay>
+							<groupId>${project.groupId}</groupId>
+							<artifactId>fluxo-av-static</artifactId>
+							<targetPath>/</targetPath>
+							<includes>
+								<include>assets/css/**</include>
+								<include>assets/js/**</include>
+								<include>*404.html</include>
+								<include>*503.html</include>
+							</includes>
+						</overlay> -->
+					</overlays>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>local</id>
+			<properties>
+				<spring.profile>inmemory</spring.profile>
+			</properties>
+		</profile>
+	</profiles>
 
 	<parent>
 		<groupId>br.com</groupId>

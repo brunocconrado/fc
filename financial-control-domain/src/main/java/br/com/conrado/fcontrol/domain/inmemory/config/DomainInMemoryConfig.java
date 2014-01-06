@@ -1,4 +1,4 @@
-package br.com.conrado.fcontrol.domain.hibernate.config;
+package br.com.conrado.fcontrol.domain.inmemory.config;
 
 import javax.annotation.PostConstruct;
 
@@ -13,26 +13,26 @@ import org.springframework.context.annotation.Scope;
 
 import br.com.conrado.fcontrol.domain.factory.EntityFactory;
 import br.com.conrado.fcontrol.domain.factory.impl.EntityFactoryImpl;
-import br.com.conrado.fcontrol.domain.hibernate.UserHibernate;
+import br.com.conrado.fcontrol.domain.mongo.UserMongo;
 import br.com.conrado.fcontrol.domain.profile.DomainProfiles;
 
 
 @Configurable
 @ComponentScan(basePackages = "br.com.conrado.fcontrol.domain")
-@Profile(DomainProfiles.HIBERNATE)
-public class DomainHibernateConfig {
-    
-    private static final Logger LOG = LoggerFactory.getLogger(DomainHibernateConfig.class);
+@Profile(DomainProfiles.INMEMORY)
+public class DomainInMemoryConfig {
+
+private static final Logger LOG = LoggerFactory.getLogger(DomainInMemoryConfig.class);
     
     @PostConstruct
     public void init() {
 	LOG.info("Init {}", this.getClass().getCanonicalName());
     }
-
+    
     @Bean
     @Scope(BeanDefinition.SCOPE_SINGLETON)
     public EntityFactory entityfactory() {
-	return new EntityFactoryImpl(UserHibernate.class.getPackage());
+	return new EntityFactoryImpl(UserMongo.class.getPackage());
     }
-
+    
 }

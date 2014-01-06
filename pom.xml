@@ -19,7 +19,7 @@
 
 		<!-- SPRING -->
 		<spring.version>3.2.2.RELEASE</spring.version>
-		<spring.security>3.1.4.RELEASE</spring.security>
+		<spring.security>3.2.0.RELEASE</spring.security>
 		<jasypt.version>1.9.0</jasypt.version>
 		<ehcache>2.7.2</ehcache>
 		<spring.mobile>1.1.0.RELEASE</spring.mobile>
@@ -27,7 +27,9 @@
 
 		<!-- SPRING VIEW (THYMELEAF) <thymeleaf.version>2.1.1.RELEASE</thymeleaf.version> <thymeleaf.extras.version>2.1.0.RELEASE</thymeleaf.extras.version> <nekohtml.version>1.9.6.2</nekohtml.version> -->
 
-		<!-- WEB <servlet.api>3.0.1</servlet.api> <jackson.version>2.2.0</jackson.version> <tomcat.version>7.0.42</tomcat.version> -->
+		<!-- WEB -->
+		<servlet.api>3.0.1</servlet.api>
+		<!-- <jackson.version>2.2.0</jackson.version> <tomcat.version>7.0.42</tomcat.version> -->
 
 		<!-- VALIDATION <validation-api>1.0.0.GA</validation-api> <hibernate.validator>4.2.0.Final</hibernate.validator> <stella.validator>2.0.3</stella.validator> -->
 
@@ -87,6 +89,40 @@
 				<artifactId>spring-context-support</artifactId>
 				<version>${spring.version}</version>
 				<scope>compile</scope>
+			</dependency>
+
+			<!-- SPRING SECURITY -->
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-core</artifactId>
+				<version>${spring.security}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-web</artifactId>
+				<version>${spring.security}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-config</artifactId>
+				<version>${spring.security}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jasypt</groupId>
+				<artifactId>jasypt</artifactId>
+				<version>${jasypt.version}</version>
+				<scope>compile</scope>
+			</dependency>
+
+			<!-- WEB -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>${servlet.api}</version>
+				<scope>provided</scope>
 			</dependency>
 
 		</dependencies>
@@ -179,8 +215,8 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	
-	<build>
+
+	<build> 
 		<finalName>${project.artifactId}</finalName>
 		<pluginManagement>
 			<plugins>
