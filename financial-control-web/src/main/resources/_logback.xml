@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <!-- address performance concern with jul-to-slf4j -->
+        <resetJUL>true</resetJUL>
+    </contextListener>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{ISO8601} [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>/var/log/fluxoav/fluxoav_app.log</file>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{ISO8601} [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE_SERVICE" class="ch.qos.logback.core.FileAppender">
+        <file>/var/log/fluxoav/fluxoav_service.log</file>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{ISO8601} [%thread] %-5level %logger{15} - %msg %n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE_INTEGRATION" class="ch.qos.logback.core.FileAppender">
+        <file>/var/log/fluxoav/fluxoav_int.log</file>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{ISO8601} [%thread] %-5level %logger{15} - %msg %n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE_SPRING" class="ch.qos.logback.core.FileAppender">
+        <file>/var/log/fluxoav/fluxoav_spring.log</file>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{ISO8601} [%thread] %-5level %logger{15} - %msg %n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.springframework" level="ALL" additivity="false">
+        <appender-ref ref="FILE_SPRING" />
+    </logger>
+
+    <logger name="org.springframework.beans.factory" level="WARN" additivity="false">
+        <appender-ref ref="FILE_SPRING" />
+    </logger>
+
+    <logger name="org.springframework.jdbc.core" level="TRACE" additivity="false">
+        <appender-ref ref="FILE_INTEGRATION" />
+    </logger>
+
+    <logger name="com.sun.xml.ws.transport" level="TRACE" additivity="false">
+        <appender-ref ref="FILE_INTEGRATION" />
+    </logger>
+
+    <logger name="net.sf.ehcache" level="DEBUG" additivity="false">
+        <appender-ref ref="FILE_SERVICE" />
+    </logger>
+
+    <logger name="org.thymeleaf" level="INFO" additivity="false">
+        <appender-ref ref="FILE_SPRING" />
+    </logger>
+
+    <logger name="ch.qos.logback" level="WARN" additivity="false">
+        <appender-ref ref="CONSOLE" />
+    </logger>
+
+    <logger name="br.com.conrado.fcontrol.integration" level="DEBUG" additivity="false">
+        <appender-ref ref="FILE_INTEGRATION" />
+    </logger>
+
+    <logger name="br.com.conrado.fcontrol.service" level="DEBUG" additivity="true">
+        <appender-ref ref="FILE_SERVICE" />
+    </logger>
+
+    <logger name="br.com.conrado" level="DEBUG" additivity="true">
+        <appender-ref ref="FILE" />
+    </logger>
+
+    <root level="${root-level:-WARN}">
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+</configuration>

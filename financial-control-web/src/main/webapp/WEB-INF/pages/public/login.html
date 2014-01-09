@@ -1,0 +1,51 @@
+<!-- COMPILATION VERSION - ${version}  -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>FC - Financial Control</title>
+
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="pt-br" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="author" content="oi-internet" />
+<meta name="expires" content="0" />
+<meta name="robots" content="index,nofollow" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<link rel="humans" href="../humans.txt" />
+<link rel="shortcut icon" href="http://oi.com.br/favicon.ico">
+
+</head>
+<body>
+
+	<form th:action="@{/api/login}" method="POST" th:object="${credentials}" class="login" id="form-logar" role="form">
+		<div class="row">
+			<div class="col-xs-12 col-md-12">
+				<input type="text" name="email" size="34" id="txtEmail" placeholder="000.000.000-00" class="form-control cpf-mask"
+					th:field="*{email}" />
+				<div class="error-thymeleaf">
+					<span th:class="${#fields.hasErrors('email')}? 'seta-cima-erro' "></span>
+					<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+						th:class="${#fields.hasErrors('email')}? 'alert alert-danger relative' : 'alert alert-danger hidden relative' ">
+						<span th:each="err : ${#fields.errors('email')}" th:text="${err}"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row topspaced">
+			<div class="col-md-12">
+				<button type="submit" id="bt-acessar" class="btn btn-default btn-acessar">Acessar</button>
+			</div>
+		</div>
+	</form>
+
+</body>
+</html>

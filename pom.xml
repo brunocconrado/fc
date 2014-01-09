@@ -25,13 +25,20 @@
 		<spring.mobile>1.1.0.RELEASE</spring.mobile>
 		<spring.mongo.version>1.2.0.RELEASE</spring.mongo.version>
 
-		<!-- SPRING VIEW (THYMELEAF) <thymeleaf.version>2.1.1.RELEASE</thymeleaf.version> <thymeleaf.extras.version>2.1.0.RELEASE</thymeleaf.extras.version> <nekohtml.version>1.9.6.2</nekohtml.version> -->
+		<!-- SPRING VIEW (THYMELEAF) -->
+		<thymeleaf.version>2.1.1.RELEASE</thymeleaf.version>
+		<thymeleaf.extras.version>2.1.0.RELEASE</thymeleaf.extras.version>
+		<nekohtml.version>1.9.6.2</nekohtml.version>
 
 		<!-- WEB -->
 		<servlet.api>3.0.1</servlet.api>
-		<!-- <jackson.version>2.2.0</jackson.version> <tomcat.version>7.0.42</tomcat.version> -->
+		<jackson.version>2.2.0</jackson.version>
+		<tomcat.version>7.0.42</tomcat.version>
 
-		<!-- VALIDATION <validation-api>1.0.0.GA</validation-api> <hibernate.validator>4.2.0.Final</hibernate.validator> <stella.validator>2.0.3</stella.validator> -->
+		<!-- VALIDATION -->
+		<validation-api>1.0.0.GA</validation-api>
+		<hibernate.validator>4.2.0.Final</hibernate.validator>
+		<stella.validator>2.0.3</stella.validator>
 
 		<!-- GSON API <gson.api>2.2.4</gson.api> -->
 
@@ -117,12 +124,91 @@
 				<scope>compile</scope>
 			</dependency>
 
+			<!-- SPRING JSON SUPPORT -->
+
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-core</artifactId>
+				<version>${jackson.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>${jackson.version}</version>
+				<scope>compile</scope>
+			</dependency>
+
 			<!-- WEB -->
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>javax.servlet-api</artifactId>
 				<version>${servlet.api}</version>
 				<scope>provided</scope>
+			</dependency>
+
+			<!-- THYMELEAF -->
+			<dependency>
+				<groupId>org.thymeleaf</groupId>
+				<artifactId>thymeleaf</artifactId>
+				<version>${thymeleaf.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.thymeleaf</groupId>
+				<artifactId>thymeleaf-spring3</artifactId>
+				<version>${thymeleaf.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.thymeleaf.extras</groupId>
+				<artifactId>thymeleaf-extras-conditionalcomments</artifactId>
+				<version>${thymeleaf.extras.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>nekohtml</groupId>
+				<artifactId>nekohtml</artifactId>
+				<version>${nekohtml.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>xml-apis</groupId>
+						<artifactId>xml-apis</artifactId>
+					</exclusion>
+				</exclusions>
+				<scope>runtime</scope>
+			</dependency>
+
+			<!-- VALIDATION -->
+			<dependency>
+				<groupId>javax.validation</groupId>
+				<artifactId>validation-api</artifactId>
+				<version>${validation-api}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>${hibernate.validator}</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>org.slf4j</artifactId>
+						<groupId>slf4j-api</groupId>
+					</exclusion>
+				</exclusions>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>br.com.caelum.stella</groupId>
+				<artifactId>caelum-stella-core</artifactId>
+				<version>${stella.validator}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>br.com.caelum.stella</groupId>
+				<artifactId>caelum-stella-bean-validation</artifactId>
+				<version>${stella.validator}</version>
+				<scope>compile</scope>
 			</dependency>
 
 		</dependencies>
@@ -216,7 +302,7 @@
 		</dependency>
 	</dependencies>
 
-	<build> 
+	<build>
 		<finalName>${project.artifactId}</finalName>
 		<pluginManagement>
 			<plugins>
@@ -348,7 +434,8 @@
 	</build>
 
 	<modules>
-		<module>finacial-control-domain</module>
+		<module>financial-control-commons</module>
+		<module>financial-control-domain</module>
 		<module>financial-control-service</module>
 		<module>financial-control-integration</module>
 		<module>financial-control-web</module>

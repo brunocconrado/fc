@@ -15,8 +15,8 @@ import br.com.conrado.fcontrol.integration.IntegrationProfiles;
 @ComponentScan(basePackages = { "br.com.conrado.fcontrol.integration" })
 public class IntegrationMongoConfiguration {
 
-private static final Logger LOG = LoggerFactory.getLogger(IntegrationMongoConfiguration.class);
-    
+    private static final Logger LOG = LoggerFactory.getLogger(IntegrationMongoConfiguration.class);
+
     @PostConstruct
     public void init() {
 	LOG.info("Init {}", this.getClass().getCanonicalName());
