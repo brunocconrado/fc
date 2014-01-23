@@ -1,6 +1,6 @@
-package br.com.conrado.fcontrol.web.servlet;
+package br.com.conrado.fcontrol.web.filter;
 
-import static br.com.conrado.fcontrol.web.servlet.RequestUtils.pathInfo;
+import static br.com.conrado.fcontrol.web.util.RequestUtils.pathInfo;
 
 import java.io.IOException;
 import java.util.regex.Pattern;
@@ -19,9 +19,9 @@ import org.springframework.web.util.HtmlUtils;
 
 import br.com.conrado.fcontrol.web.mvc.DefaultApplicationListener;
 
-public class DefaultServletFilter extends OncePerRequestFilter {
+public class DefaultFilter extends OncePerRequestFilter {
 
-    private static final Logger LOG = LoggerFactory.getLogger(DefaultServletFilter.class);
+    private static final Logger LOG = LoggerFactory.getLogger(DefaultFilter.class);
 
     private String environmentProfile;
 

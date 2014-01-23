@@ -12,7 +12,7 @@ import br.com.conrado.fcontrol.integration.IntegrationProfiles;
 
 @Configuration
 @Profile(IntegrationProfiles.INMEMORY)
-@ComponentScan(basePackages = { "br.com.conrado.fcontrol.integration" })
+@ComponentScan(basePackages = { "br.com.conrado.fcontrol.integration.db" })
 public class IntegrationInMemoryConfiguration {
 
     private static final Logger LOG = LoggerFactory.getLogger(IntegrationInMemoryConfiguration.class);

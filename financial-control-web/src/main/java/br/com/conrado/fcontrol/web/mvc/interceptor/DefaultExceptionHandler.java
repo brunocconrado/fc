@@ -20,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver;
 
 import br.com.conrado.fcontrol.web.controller.ErrorViewController;
-import br.com.conrado.fcontrol.web.servlet.RequestUtils;
+import br.com.conrado.fcontrol.web.util.RequestUtils;
 
 @ControllerAdvice
 public class DefaultExceptionHandler extends DefaultHandlerExceptionResolver {

@@ -19,10 +19,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.conrado.fcontrol.domain.Credentials;
 import br.com.conrado.fcontrol.service.AuthenticationService;
+import br.com.conrado.fcontrol.web.annotation.Private;
 import br.com.conrado.fcontrol.web.enumeration.PageView;
 
 @Controller
-//@RequestMapping("api")
 public class AuthenticationController extends BaseController {
 
     private static final Logger LOG = LoggerFactory.getLogger(AuthenticationController.class);
@@ -51,6 +51,7 @@ public class AuthenticationController extends BaseController {
 	return currentView();
     }
 
+    @Private
     @RequestMapping(value = "/api/login", method = RequestMethod.POST)
     public String login(@ModelAttribute(MODEL_NAME) @Valid Credentials credentials, BindingResult bindingResult,
 	    Model model, RedirectAttributes redirectAttributes) {

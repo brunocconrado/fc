@@ -6,13 +6,13 @@ import br.com.conrado.fcontrol.domain.UserBase;
 public class UserMongo extends UserBase implements User {
 
     @Override
-    public String getLogin() {
-	return login;
+    public String getEmail() {
+	return email;
     }
 
     @Override
-    public String setLogin(String login) {
-	return login;
+    public void setEmail(String email) {
+	this.email = email;
     }
 
 }

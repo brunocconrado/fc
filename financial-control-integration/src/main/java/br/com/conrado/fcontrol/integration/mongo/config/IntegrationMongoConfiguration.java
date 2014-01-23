@@ -12,7 +12,7 @@ import br.com.conrado.fcontrol.integration.IntegrationProfiles;
 
 @Configuration
 @Profile(IntegrationProfiles.MONGO)
-@ComponentScan(basePackages = { "br.com.conrado.fcontrol.integration" })
+@ComponentScan(basePackages = { "br.com.conrado.fcontrol.integration.mongo" })
 public class IntegrationMongoConfiguration {
 
     private static final Logger LOG = LoggerFactory.getLogger(IntegrationMongoConfiguration.class);

@@ -16,7 +16,7 @@
 	</dependencies>
 
 	<parent>
-		<groupId>br.com</groupId>
+		<groupId>br.com.conrado</groupId>
 		<artifactId>finacial-control</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>

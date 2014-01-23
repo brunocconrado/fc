@@ -47,7 +47,7 @@ public class EntityFactoryImplTest {
 	User instance = factory.getNewInstance(User.class);
 	assertNotNull(instance);
 	assertEquals(user, instance.getClass());
-	assertNull(instance.getLogin());
+	assertNull(instance.getEmail());
     }
     
     @Test(expected=ClassNotFoundException.class)

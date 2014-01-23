@@ -170,7 +170,7 @@
 		<profile>
 			<id>local</id>
 			<properties>
-				<spring.profile>inmemory</spring.profile>
+				<spring.profile>inmemory,session</spring.profile>
 				
 				<local.jetty.reload>manual</local.jetty.reload>
 				<local.jetty.scan>0</local.jetty.scan>
@@ -210,7 +210,7 @@
 	</profiles>
 
 	<parent>
-		<groupId>br.com</groupId>
+		<groupId>br.com.conrado</groupId>
 		<artifactId>finacial-control</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>

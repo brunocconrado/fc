@@ -6,11 +6,9 @@ import javax.annotation.PreDestroy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -19,16 +17,15 @@ import org.thymeleaf.spring3.SpringTemplateEngine;
 import org.thymeleaf.spring3.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
+import br.com.conrado.fcontrol.web.UserControl;
 import br.com.conrado.fcontrol.web.mvc.DefaultResourceView;
+import br.com.conrado.fcontrol.web.mvc.interceptor.SecurityHandleInterceptor;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Configuration
-@EnableWebMvc
-@ComponentScan("br.com.conrado.fcontrol")
-public class WebConfig extends WebMvcConfigurerAdapter {
+public abstract class WebConfig extends WebMvcConfigurerAdapter {
 
     private static final Logger LOG = LoggerFactory.getLogger(WebConfig.class);
 
@@ -36,16 +33,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public static final String CONTENT_TYPE = "text/html; charset=UTF-8";
 
     public static final int YEAR_IN_SECONDS = 31556926;
+    
 
     @PostConstruct
     public void init() {
 	LOG.debug("init() {} (debug={})", WebConfig.class.getSimpleName(), true);
     }
 
-    @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-	configurer.enable();
-    }
 
    // @Bean
     public ViewResolver getJspViewResolver() {
@@ -82,12 +76,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	return viewResolver;
     }
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-	Integer cacheInSeconds = true ? 0 : YEAR_IN_SECONDS;
-	registry.addResourceHandler("/css/**").addResourceLocations("/css/").setCachePeriod(cacheInSeconds);
-	registry.addResourceHandler("/img/**").addResourceLocations("/img/").setCachePeriod(cacheInSeconds);
-	registry.addResourceHandler("/js/**").addResourceLocations("/js/").setCachePeriod(cacheInSeconds);
+    
+    @Bean
+    public SecurityHandleInterceptor securityInterceptor() {
+	return new SecurityHandleInterceptor();
     }
 
     @Bean
@@ -98,6 +90,27 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
 	return mapper;
     }
+    
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+	Integer cacheInSeconds = true ? 0 : YEAR_IN_SECONDS;
+	registry.addResourceHandler("/css/**").addResourceLocations("/css/").setCachePeriod(cacheInSeconds);
+	registry.addResourceHandler("/img/**").addResourceLocations("/img/").setCachePeriod(cacheInSeconds);
+	registry.addResourceHandler("/js/**").addResourceLocations("/js/").setCachePeriod(cacheInSeconds);
+    }
+    
+    @Override
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+	configurer.enable();
+    }
+    
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(securityInterceptor());
+    }
+    
+    @Bean
+    public abstract UserControl userControl();
 
     @PreDestroy
     public void destroy() {

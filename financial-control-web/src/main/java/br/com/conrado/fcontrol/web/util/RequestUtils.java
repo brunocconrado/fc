@@ -1,4 +1,4 @@
-package br.com.conrado.fcontrol.web.servlet;
+package br.com.conrado.fcontrol.web.util;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +16,7 @@ public class RequestUtils extends WebUtils {
     public static String redirectUrl(HttpServletRequest request, HttpServletResponse response, String view) {
         try {
             String url = response.encodeRedirectURL(request.getContextPath() + view);
-            LOG.debug("redirectUrl -> ", url);
+            LOG.debug("redirectUrl -> {}", url);
             response.sendRedirect(url);
             return url;
         } catch (Exception e) {
