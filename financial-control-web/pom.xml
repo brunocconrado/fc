@@ -2,7 +2,6 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>financial-control-web</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>financial-control-web</name>
 	<description>FC - Web</description>
@@ -97,19 +96,19 @@
 
 		<!-- MODULES -->
 		<dependency>
-			<groupId>br.com</groupId>
+			<groupId>br.com.conrado</groupId>
 			<artifactId>financial-control-domain</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>br.com</groupId>
+			<groupId>br.com.conrado</groupId>
 			<artifactId>financial-control-service</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>br.com</groupId>
+			<groupId>br.com.conrado</groupId>
 			<artifactId>financial-control-commons</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 
 	</dependencies>
